@@ -23,7 +23,7 @@ namespace lin_algebra{
     }
 
     template<typename T>
-    matrix<T>::matrix(matrix const &m) {
+    matrix<T>::matrix(const matrix &m) {
         _data = new T *[m._rows];
         _data[0] = new T[m._rows * m._cols];
         for (std::size_t i = 1; i != m._rows; i++) {
@@ -213,6 +213,18 @@ namespace lin_algebra{
                 _data[i][j] = static_cast<T> (rand()) / (static_cast<T> (RAND_MAX / (2 * abs_limit))) - abs_limit;
             }
         }
+    }
+
+    template<typename T>
+    matrix<T> matrix<T>::negate() {
+        matrix<T> tmp(*this);
+        for(std::size_t i = 0; i < _rows; i++) {
+            for(std::size_t j = 0; j < _cols; j++) {
+                tmp[i][j] *= -1;
+            }
+        }
+
+        return tmp;
     }
 
     template<typename T>

@@ -16,7 +16,7 @@ namespace lin_algebra{
     class matrix : public arithmetic_restriction<T> {
     public:
         matrix(T val, std::size_t r, std::size_t c);
-        matrix(matrix const &m);
+        matrix(const matrix &m);
         ~matrix();
 
         std::size_t get_rows() const;
@@ -44,6 +44,7 @@ namespace lin_algebra{
         T max_elem();
         T norm();
         bool check_gersh_circles();
+        matrix<T> negate();
 
         template <typename U>
         friend std::istream &operator>>(std::istream &in, matrix<U> &m);

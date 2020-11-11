@@ -8,11 +8,11 @@ using std::cin; using std::cout;
 
 
 int main(){
-    matrix<double> A(0, 3, 3), B(0, 3, 1), C(0, 3, 1);
+    matrix<float> A(0, 3, 3), B(0, 3, 1);
     freopen("input.txt", "r", stdin);
     cin >> A;
     cin >> B;
-    cin >> C;
-    
-    cout << iteration_solve<double>(A, B, 0.001);
+    matrix<float> C(A);
+    LES_solver<float> a(A, B);
+    cout << a.gauss_seidel(0.000001);
 }
