@@ -37,7 +37,13 @@ namespace lin_algebra{
                 _data[i][j] = m._data[i][j];
             }
         }
+    }
 
+    template<typename T>
+    matrix<T>::matrix(std::size_t n) : matrix(0, n, n) {
+        for(std::size_t i = 0; i < _rows; i++) {
+            _data[i][i] = 1;
+        }
     }
 
     template<typename T>
@@ -244,6 +250,17 @@ namespace lin_algebra{
         }
 
         return true;
+    }
+
+    template<typename T>
+    matrix<T> matrix<T>::transpose() {
+        matrix<T> tmp(0, _cols, _rows);
+        for(std::size_t i = 0; i < _rows; i++) {
+            for(std::size_t j = 0; j < _cols; j++) {
+                tmp[j][i] = _data[i][j];
+            }
+        }
+        return tmp;
     }
 }
 
